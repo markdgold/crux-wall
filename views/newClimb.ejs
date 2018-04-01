@@ -1,0 +1,36 @@
+<%include partials/nav%>
+<form class="form_well container" action="/climb/new" method="POST" enctype="multipart/form-data">
+
+	<div class="form-group">
+		<label for="climbName">Name of Climb</label>
+		<input class="form-control" type="text" name="climbName" placeholder="Enter name of climb" required>
+	</div>
+
+	<div class="form-group">
+		<label for="style">Style</label>
+		<select class="form-control" name="style">
+			<option value="oneMover">One Mover/Dyno</option>
+			<option value="enduro">Enduro</option>
+			<option value="crimp">Crimp</option>
+			<option value="power">Power</option>
+			<option value="tech">Tech</option>
+		</select>
+	</div>
+
+	<div class="form-group">
+		<label for="grade_id">Grade</label>
+		<select class="form-control" name="grade_id">
+			<option value="0">Red (V4-)</option>
+			<option value="1">Blue (V5-6)</option>
+			<option value="2">Orange (V7-8)</option>
+			<option value="3">Purple (V9-V10)</option>
+			<option value="4">Black (V11+)</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="image">Climb Image</label>
+		<input class="form-control btn" type="file" name="image" required>
+	</div>
+	<input hidden type="text" name="userID" value="<%=currentUser.id%>">
+	<input type="submit" value="Add Climb" class="btn btn-block">
+</form>

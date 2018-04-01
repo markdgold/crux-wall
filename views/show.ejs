@@ -1,0 +1,65 @@
+<%include partials/nav%>
+<main>
+<div class="climb_info climb_div text-center <%=climb.grade.color%>">
+  <p>"<%=climb.name%>"</p>
+  <p>Set By: <%=climb.user.username%></p>
+  <p>Style: <%=climb.style%></p>
+	<ul class="container show_nav">
+	<% if(currentUser && climb.creator_id == currentUser.id){%>
+	  <li class="col-xs-3"><a href="#comments"><i class="glyphicon glyphicon-comment"></i></a></li>
+    <li class="col-xs-3">
+      <form action="/favorites/<%=climb.id%>" method="POST">
+        <input hidden type="text" name="userId" value=<%=currentUser.id%>>
+        <button class="glyph-buttons glyphicon glyphicon-star"></button>
+      </form>
+    </li>
+    <li class="col-xs-3">
+      <form action="/logbook/<%=climb.id%>" method="POST">
+        <input hidden type="text" name="userId" value=<%=currentUser.id%>>
+        <button class="glyph-buttons glyphicon glyphicon-check"></button>
+      </form>
+    </li>
+    <li class="col-xs-3"><a href="/climb/edit/<%=climb.id%>"><i class="glyphicon glyphicon-edit"></i></a></li>
+  <%} else if (currentUser) { %>
+    <li class="col-xs-4"><a href="#comments"><i class="glyphicon glyphicon-comment"></i></a></li>
+    <li class="col-xs-4">
+      <form action="/favorites/<%=climb.id%>" method="POST">
+        <input hidden type="text" name="userId" value=<%=currentUser.id%>>
+        <button class="glyph-buttons glyphicon glyphicon-star"></button>
+      </form>
+    </li>
+    <li class="col-xs-4">
+      <form action="/logbook/<%=climb.id%>" method="POST">
+        <input hidden type="text" name="userId" value=<%=currentUser.id%>>
+        <button class="glyph-buttons glyphicon glyphicon-check"></button>
+      </form>
+    </li>
+	<%} else {%>
+		<li class="col-xs-12"><a href="#comments"><i class="glyphicon glyphicon-comment"></i></a></li>
+  <%};%>
+	</ul>
+</div>
+<img class="climb_img	" src="<%=climb.imgur%>" alt="<%=climb.name%>">
+
+<h2 class="text-center eee" id="comments">Comments</h2>
+<%climb.comments.forEach(function(comment){%>
+  <div class="well">
+    <strong><%=comment.user.username%>:</strong><span class="comment-text"><%=comment.comment%></span>
+  </div>
+<%})%>
+<%if(currentUser){%>
+  <form class="well" action="/comments/new" method="POST">
+    <div class="form-group container-fluid no-bottom-margin no-padding">
+      <label>Post Comment</label>
+      <br>
+      <textarea name='comment' rows="4" class="full-width"></textarea>
+      <input hidden readonly type="text" name="userId" value="<%=currentUser.id%>">
+      <input hidden readonly type="text" name="climbId" value="<%=climb.id%>">
+      <br>
+      <input class="btn pull-right" type="submit" value="Comment">
+    </div>
+  </form>
+<%}else{%>
+  <div class="btn text-center col-xs-12 margin-bottom-30"><a class='eee' href="/auth/login">Please Login to Comment</a></div>
+<%}%>
+</main>

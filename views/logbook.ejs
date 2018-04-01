@@ -1,0 +1,30 @@
+<%include partials/nav%>
+<main class="all_climbs">
+<%if(sentClimbs.length === 0){%>
+    <h2 class="no_climbs_found">No Climbs in Logbook</h2>
+<%}%>
+<%sentClimbs.forEach(function(sentClimb){ %>
+<div class="climb_div text-center">
+    <div id="<%=sentClimb.user.username%>" class="climb_info <%=sentClimb.grade.color%> <%=sentClimb.style%>">
+        <p>"<%=sentClimb.name%>"</p>
+        <p>Set By: <%=sentClimb.user.username%></p>
+        <p>Style: <%=sentClimb.style%></p>
+        <hr>
+        <p><i class="glyphicon glyphicon-chevron-down"></i></p>
+    </div>
+    <div class="slide_info">
+    <ul>
+        <li><a href="/climb/show/<%=sentClimb.id%>">view</li></a>
+        <li>
+            <form action="/logbook/<%=sentClimb.id%>?_method=DELETE" method="POST">
+                <input class="slide_info_submit" type="submit" name="deleteSend" value="Delete Send">
+            </form>
+        </li>
+    </ul>
+    </div>
+    <img class="climb_img" src="<%=sentClimb.imgur%>" alt="<%=sentClimb.name%>">
+</div>
+<%});%>
+
+
+</main>

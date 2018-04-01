@@ -1,0 +1,36 @@
+<%include partials/nav%>
+<main class="all_climbs">
+<%if(favoriteClimbs.length === 0){%>
+    <h2 class="no_climbs_found">No Favorite Climbs</h2>
+<%}%>
+<%favoriteClimbs.forEach(function(favoriteClimb){ %>
+<div class="climb_div text-center">
+    <div id="<%=favoriteClimb.user.username%>" class="climb_info <%=favoriteClimb.grade.color%> <%=favoriteClimb.style%>">
+        <p>"<%=favoriteClimb.name%>"</p>
+        <p>Set By: <%=favoriteClimb.user.username%></p>
+        <p>Style: <%=favoriteClimb.style%></p>
+        <hr>
+        <p><i class="glyphicon glyphicon-chevron-down"></i></p>
+    </div>
+    <div class="slide_info">
+    <ul>
+        <li><a href="/climb/show/<%=favoriteClimb.id%>">view</li></a>
+        <li>
+            <form action="/favorites/<%=favoriteClimb.id%>?_method=DELETE" method="POST">
+                <input class="slide_info_submit" type="submit" name="favorite" value="Remove Favorite">
+            </form>
+        </li>
+        <li>
+            <form action="/logbook/<%=favoriteClimb.id%>" method="POST">
+                <input hidden type="text" name="userId" value=<%=currentUser.id%>>
+                <input class="slide_info_submit" type="submit" name="Log" value="Log Climb">
+            </form>
+        </li>
+    </ul>
+    </div>
+    <img class="climb_img" src="<%=favoriteClimb.imgur%>" alt="<%=favoriteClimb.name%>">
+</div>
+<%});%>
+
+
+</main>

@@ -1,0 +1,38 @@
+<%include partials/filterNav%>
+
+<main class="all_climbs">
+<%if(climbs.length === 0){%>
+<h2 class="no_climbs_found">No Climbs Found</h2>
+<%}%>
+<%climbs.forEach(function(climb){ %>
+<div class="climb_div text-center">
+    <div id="<%=climb.user.username%>" class="climb_info <%=climb.grade.color%> <%=climb.style%>">
+        <p>"<%=climb.name%>"</p>
+        <p>Set By: <%=climb.user.username%></p>
+        <p>Style: <%=climb.style%></p>
+        <hr>
+        <p><i class="glyphicon glyphicon-chevron-down"></i></p>
+    </div>
+    <div class="slide_info">
+    <ul>
+        <li><a href="/climb/show/<%=climb.id%>">view</li></a>
+        <%if(currentUser){%>
+            <li><form action="/favorites/<%=climb.id%>" method="POST">
+                    <input hidden type="text" name="userId" value=<%=currentUser.id%>>
+                    <input class="slide_info_submit" type="submit" name="favorite" value="Add Favorite">
+                </form>
+            </li>
+            <li><form action="/logbook/<%=climb.id%>" method="POST">
+                    <input hidden type="text" name="userId" value=<%=currentUser.id%>>
+                    <input class="slide_info_submit" type="submit" name="Log" value="Log Climb">
+                </form>
+            </li>
+        <%}%>
+    </ul>
+    </div>
+    <img class="climb_img" src="<%=climb.imgur%>" alt="<%=climb.name%>">
+</div>
+<%});%>
+
+
+</main>

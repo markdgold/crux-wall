@@ -1,0 +1,20 @@
+<%include partials/nav%>
+<main class="container profile">
+
+<h2 class="username text-center"><%=currentUser.username%></h2>
+
+<h4 class="btn btn-primary your_climbs_btn btn-block">Your Climbs (<%=usersClimbs.length%>)</h4>
+<div class="users_climbs well">
+<%usersClimbs.forEach(function(climb){ %>
+	<div>
+    <a href="/climb/show/<%=climb.id%>"><%=climb.name%></a>
+    <hr>
+	</div>
+<%});%>
+</div>
+<a href="/logbook" class="btn btn-primary logbook_profile btn-block">Logbook</a>
+<a href="/favorites" class="btn btn-primary favorites_profile btn-block">Favorites</a>
+<a class="logout btn btn-primary btn-block" href="/auth/logout">Logout</a>
+
+</main>
+<%include partials/footer%>

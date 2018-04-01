@@ -1,0 +1,63 @@
+
+<nav class="climb_nav">
+  <ul class="container text-center">
+      <li class="col-xs-3"><a href="/"><i class="glyphicon glyphicon-home"></i></a></li><!--
+   --><li class="col-xs-3"><a href="/climb/new"><i class="glyphicon glyphicon-plus"></i></a></li><!--
+   -->
+   <!-- <li class="col-xs-3"><a href="#"><i class="glyphicon glyphicon-star"></i></a></li> -->
+   <!---->
+   <li class="col-xs-3 filter_btn"><span><i class="glyphicon glyphicon-filter"></i></span></li>
+   <li class="col-xs-3"><a href="/auth/profile"><i class="glyphicon glyphicon-user"></i></a></li>
+  </ul>
+  <form id="filter_slider" class="container text-center" action="/filter" method="POST">
+      <div class="form-group well">
+        <label for="Style">Style:</label>
+        <br>
+        <fieldset>
+          <input name="style_group" value="power" type="checkbox">Power
+          <input name="style_group" value="tech" type="checkbox">Tech
+          <input name="style_group" value="crimp" type="checkbox">Crimp
+          <br>
+          <input name="style_group" value="oneMover" type="checkbox">One-Mover
+          <input name="style_group" value="enduro" type="checkbox">Enduro
+        </fieldset>
+      </div>
+      <div class="form-group well">
+        <label>Set By:</label>
+        <select id="setBy" name="set_by" class="form-control">
+          <option value="all">All</option>
+          <% var unique = {};
+            var uniqueUsernames = [];
+            climbs.forEach(climb => {
+              if (!unique[climb.user.username]) {
+                uniqueUsernames.push({
+                  'userId': climb.creator_id,
+                  'username': climb.user.username
+                });
+                unique[climb.user.username] = true;
+              }
+            });%>
+          <%uniqueUsernames.forEach(unique =>{%>
+            <option value="<%=unique.userId%>"><%=unique.username%></option>
+          <%});%>
+        </select>
+      </div>
+      <div class="form-group well">
+        <label>Select Grade Range:</label>
+        <div>
+          <span class="colorSpan red"></span>
+          <span class="colorSpan blue"></span>
+          <span class="colorSpan orange"></span>
+          <span class="colorSpan purple"></span>
+          <span class="colorSpan black"></span>
+        </div>
+      </div>
+      <div id=slider-step></div>
+        <input hidden type="text" name="slider_lower" id="slider-step-value-lower">
+        <input hidden type="text" name="slider_upper" id="slider-step-value-upper">
+
+        <a id="reset" class="btn btn-primary col-xs-6">Reset</a>
+        <input type="submit" id="filter" class="btn btn-primary col-xs-6" value="Filter">
+      </div>
+  </form>
+</nav>

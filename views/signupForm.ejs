@@ -1,0 +1,14 @@
+<%include partials/nav%>
+<div class="container">
+
+<form action="/auth/signup" method="POST">
+	<legend>Sign up today!</legend>
+	<input type="text" class="form-control" id="username" name="username" placeholder="Enter Username">
+	<input type="email" class="form-control" id="login" name="email" placeholder="Enter Email">
+	<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+	<br>
+	<button type="submit" class="btn btn-primary btn-block">Submit</button>
+</form>
+
+</div>
+<%include partials/footer%>

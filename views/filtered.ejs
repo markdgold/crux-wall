@@ -1,0 +1,21 @@
+<%include partials/filterNav%>
+
+<main class="all_climbs">
+	<%if(filteredClimbs.length>0){%>
+		<%filteredClimbs.forEach(function(climb){ %>
+			<div class="climb_div text-center">
+	    	<div id="<%=climb.user.username%>" class="climb_info <%=climb.grade.color%> <%=climb.style%>">
+	        <p>"<%=climb.name%>"</p>
+	        <p>Set By: <%=climb.user.username%></p>
+	        <p>Style: <%=climb.style%></p>
+	    	</div>
+	    	<img class="climb_img" src="<%=climb.imgur%>" alt="<%=climb.name%>">
+			</div>
+		<%});%>
+	<%} else {%>
+		<div class="text-center">
+			<h2 class="eee">No Climbs Found</h2>
+			<img class="jimbo" src="https://68.media.tumblr.com/fbbd8479194efd214f35fd5e717e1137/tumblr_nm09j7OTqW1rqos73o1_500.gif" alt="Jimbo">
+		</div>
+	<%};%>
+</main>
