@@ -17,7 +17,7 @@ A database of climbs created in the Crux Climbing Center's spray wall. Users can
 
 ## To Run locally
 - npm install
-- generate .env file with:
+- generate .env file with:  
 	SESSION_SECRET  
 	IMGUR_CLIENT_ID  
 	IMGUR_SECRET  
