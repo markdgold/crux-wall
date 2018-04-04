@@ -2,7 +2,8 @@ body, html {
     font-family: 'raleway', sans-serif;
     background-position: left;
     text-transform: uppercase;
-    background: #efefef;
+    /*background: #efefef;*/
+    background: rgb(65,65,65);
     min-height: 100%;
     height: 100%;
 }
@@ -17,10 +18,19 @@ body, html {
 }
 
 .header {
-    background-color: rgba(119, 25, 73, 0.9);
+    background-color: #efefef;
     background-size: cover;
+    margin: 0;
+    padding: 0;
     width: 100%;
     height: 100px;
+}
+
+.header div{
+    display: inline-block;
+    background-color: rgba(119, 25, 73, 0.9);
+    width: 100%;
+    height: 100%;
 }
 
 .header span {
@@ -34,6 +44,7 @@ body, html {
 .header a {
     display: block;
     padding-top: 25px;
+    padding-left: 20px;
 }
 
 .land_nav li {
@@ -173,7 +184,7 @@ main {
     background-color: #d3463a;
 }
 
-.orange {
+.yellow {
     background-color: #c69f3f;
 }
 
@@ -334,7 +345,16 @@ legend {
     padding-top: 30px;
     z-index: 100000;
 }
+#reset:hover{
+    color: rgb(65,65,65);
+    cursor: pointer;
+}
 
+#filter{
+    float: right;
+    font-family: 'raleway', sans-serif;
+    text-transform: uppercase;
+}
 .colorSpan {
     display: inline-block;
     width: 17%;

@@ -1,17 +1,18 @@
 <%include partials/nav%>
-<div class=" container">
-
-<form action="/auth/login" method="POST">
-	<legend class="login">Login</legend>
-		<input type="text" class="form-control" id="login" name="username" placeholder="Enter Username">
-		<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
-	<br>
-	<button type="submit" class="btn btn-primary btn-block">Login</button>
-	<!-- <a class="btn btn-primary btn-block" href="/auth/forgot">Forgot Password?</a> -->
-</form>
-<br>
-<p class="or">-or-</p>
-<br>
-<a class="btn btn-primary btn-block" href="/auth/signup">Sign Up</a>
-</div>
+<main class="wrapper">
+	<div class=" container">
+		<form action="/auth/login" method="POST">
+			<legend class="login">Login</legend>
+				<input type="text" class="form-control" id="login" name="username" placeholder="Enter Username">
+				<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password">
+			<br>
+			<button type="submit" class="btn btn-primary btn-block">Login</button>
+			<!-- <a class="btn btn-primary btn-block" href="/auth/forgot">Forgot Password?</a> -->
+		</form>
+		<br>
+		<p class="or">-or-</p>
+		<br>
+		<a class="btn btn-primary btn-block" href="/auth/signup">Sign Up</a>
+	</div>
+</main>
 <%include partials/footer%>
