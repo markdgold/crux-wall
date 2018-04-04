@@ -40,9 +40,13 @@ router.get('/show/:id', (req, res) => {
         ]
     })
     .then(climb=>{
-        // res.send(climb);
+        if(!climb){
+            throw new Error('no climb');
+        }
         res.render('show', { climb: climb });
-    })
+    }).catch(error=>{
+        res.render('error');
+    });
 });
 
 router.get('/new', isLoggedIn, function(req, res) {
